@@ -1,31 +1,15 @@
-// import default object with a local camelCase name
 import locationsArray from '../init-locations.js';
 
 const inside = (device, bounds) => {
-  // console.log(`CHECKING inside ${bounds.Name}`);
-  // console.log(device);
-  // console.log(bounds);
-  // console.log(device.latitude > bounds.South);
-  // console.log(device.latitude < bounds.North);
-  // console.log(device.longitude > bounds.West);
-  // console.log(device.longitude < bounds.East);
+  
   const ans =
     device.latitude > bounds.South &&
     device.latitude < bounds.North &&
-    device.longitude > bounds.West &&
+    device.longitude > bounds.West &&     
     device.longitude < bounds.East;
-  // console.log(`CHECKING ${bounds.Name} ANS: ${ans}`);
+  
   return ans;
 };
-
-/**
- * Get the location
- * Uses new import / export - be sure to set type="module" in HTML
- * Can be easily added to any web page.
- * Includes GeoLocation API example.
- * @module location/getLocation
- * @author Denise Case
- */
 export default function getLocation() {
   if (!navigator.geolocation) {
     document.querySelector('#error-message').innerHTML =
@@ -41,7 +25,7 @@ export default function getLocation() {
       (position) => {
         document.querySelector('#device-lat').innerHTML = '';
         document.querySelector('#device-long').innerHTML = '';
-        document.querySelector('#locationAnswer').innerHTML = '?';
+        document.querySelector('#locationAnswer').innerHTML = '';
 
         if (position === undefined) {
           document.querySelector('#error-message').innerHTML =
@@ -57,7 +41,7 @@ export default function getLocation() {
             const name = thisLoc.Name;
             document.querySelector('#locationAnswer').innerHTML = name;
             const utterance = new SpeechSynthesisUtterance();
-            utterance.text = `Congratulations! You found location ${name}`;
+            utterance.text = `You are in the location ${name}`;
             window.speechSynthesis.speak(utterance);
             break;
           }
