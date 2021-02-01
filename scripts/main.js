@@ -32,7 +32,7 @@ async function locationHandler() {
     locationsArray.forEach(function (value) {
         if (isInside(value.Latitude, value.Longitude)) {
             document.getElementById("locationAnswer").innerHTML = value.Name;
-            let utterance = new SpeechSynthesisUtterance("You have reached, welldone. Welcome to " + value.Name);
+            let utterance = new SpeechSynthesisUtterance("You have reached, welldone, Welcome to " + value.Name);
             speechSynthesis.speak(utterance);
             error = false;
         }
@@ -40,7 +40,7 @@ async function locationHandler() {
 
     if (error) {
         document.getElementById("error-message").innerHTML = "Please be in the range of 30m.";
-        let utterance = new SpeechSynthesisUtterance("Please be in the range of 30m.");
+        let utterance = new SpeechSynthesisUtterance("You are not in range for any of the locations");
             speechSynthesis.speak(utterance);
     } else {
         document.getElementById("error-message").innerHTML = "";
